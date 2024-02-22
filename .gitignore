@@ -2,3 +2,4 @@
 *.xlsx
 *.zip
 *C_Forms/
+__pycache__/
