@@ -1,3 +1,8 @@
+# Directories
+- {year} - for storing year-specific data
+- efile - for storing e-filing scripts
+- pdf - for storing PDF-generation scripts
+
 ## Generating 1095-C Form PDFs
 - dicts.py holds the mapping of form values to the PDF field keys that correspond to those values.
 - dicts.py is also where the general shared information for the form values is populated.

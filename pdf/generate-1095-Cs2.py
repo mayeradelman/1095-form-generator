@@ -1,10 +1,9 @@
 import pandas as pd
 from fillpdf import fillpdfs as fp
 import os
-from dicts import *
+from pdf.dicts import *
 import os
-from pypdf import PdfReader, PdfWriter
-from util import Util
+from pdf.util import Util
 
 def load_data():
   df = pd.DataFrame(pd.read_csv('csv2.csv'))
