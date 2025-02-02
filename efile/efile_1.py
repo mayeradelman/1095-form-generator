@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
+# NOTE - transforms data into format for efiling as templated in {year}/{year}_1095-C_eFile_Sample.xls
+
 tax_year = 2023
 date_format = '%m/%d/%Y'
 
@@ -58,31 +60,32 @@ column_mapping = {
   'Safe Harbor Nov': 'NovSafeHarbor',
   'Safe Harbor Dec': 'DecSafeHarbor',
 
-  '': 'JanZipCode',
-  '': 'FebZipCode',
-  '': 'MarZipCode',
-  '': 'AprZipCode',
-  '': 'MayZipCode',
-  '': 'JunZipCode',
-  '': 'JulZipCode',
-  '': 'AugZipCode',
-  '': 'SepZipCode',
-  '': 'OctZipCode',
-  '': 'NovZipCode',
-  '': 'DecZipCode',
+  # NOTE - COLUMNS THAT DON'T HAVE A CORRESPONDING COLUMN IN THE SOURCE DATA
+  # '': 'JanZipCode',
+  # '': 'FebZipCode',
+  # '': 'MarZipCode',
+  # '': 'AprZipCode',
+  # '': 'MayZipCode',
+  # '': 'JunZipCode',
+  # '': 'JulZipCode',
+  # '': 'AugZipCode',
+  # '': 'SepZipCode',
+  # '': 'OctZipCode',
+  # '': 'NovZipCode',
+  # '': 'DecZipCode',
 
 
-  '': 'RecepientMiddle',
-  '': 'RecipientSuffix',
-  '': 'RecepientAddressType',
-  '': 'RecepientCountryName',
-  '': 'EmployeeAge',
-  '': 'PlanStartMonth',
-  '': 'All12OfferCoverage',
-  '': 'All12MonthlyPremium',
-  '': 'All12SafeHarbor',
-  '': 'AllZipCode',
-  '': 'EmployerSelfCoverage',
+  # '': 'RecepientMiddle',
+  # '': 'RecipientSuffix',
+  # '': 'RecepientAddressType',
+  # '': 'RecepientCountryName',
+  # '': 'EmployeeAge',
+  # '': 'PlanStartMonth',
+  # '': 'All12OfferCoverage',
+  # '': 'All12MonthlyPremium',
+  # '': 'All12SafeHarbor',
+  # '': 'AllZipCode',
+  # '': 'EmployerSelfCoverage',
 }
 
 empty_columns = [
@@ -160,9 +163,6 @@ for index, row in df.iterrows():
   new_row = {}
 
   for old_column, new_column in column_mapping.items():
-    if old_column == '':
-      continue
-
     value = row[old_column]
     if pd.isna(value):
       value = ''
@@ -185,7 +185,6 @@ for index, row in df.iterrows():
 
   for column in empty_columns:
     new_row[column] = ''
-
 
   new_row['EmployeeAge'] = '' # get the age
   new_row['PlanStartMonth'] = PLAN_START_MONTH
